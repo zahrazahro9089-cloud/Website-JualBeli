@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import HeroParallax from '../components/HeroParallax';
+import Services from '../components/Services.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Pricing from '../components/Pricing.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/hero-parallax.css';
+---
+
+<Layout title="BARAVORAGE | Jasa Perancangan Website Profesional">
+    <Navbar />
+    <HeroParallax client:load />
+    <Services />
+    <Portfolio />
+    <Pricing />
+    <Contact />
+    <Footer />
+</Layout>
+
+<script>
+    // Scroll reveal animation for fade-in elements
+    function revealOnScroll() {
+        const elements = document.querySelectorAll('.fade-in');
+        elements.forEach((el, index) => {
+            const elementTop = el.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            if (elementTop < windowHeight - 80) {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, (index % 6) * 80);
+            }
+        });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('DOMContentLoaded', revealOnScroll);
+    revealOnScroll();
+</script>

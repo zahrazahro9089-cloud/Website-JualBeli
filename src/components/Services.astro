@@ -1,0 +1,112 @@
+---
+const services = [
+    {
+        title: "Website Company Profile",
+        desc: "Website profesional untuk menampilkan profil perusahaan, layanan, dan informasi bisnis Anda.",
+        icon: `<rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>`
+    },
+    {
+        title: "E-Commerce",
+        desc: "Toko online lengkap dengan sistem pembayaran, keranjang belanja, dan manajemen produk.",
+        icon: `<circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="m1 1 4 4h14l-2 8H7"></path>`
+    },
+    {
+        title: "Responsive Design",
+        desc: "Desain yang optimal di semua perangkat, dari desktop hingga smartphone.",
+        icon: `<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line>`
+    },
+    {
+        title: "Custom Development",
+        desc: "Pengembangan fitur khusus sesuai kebutuhan unik bisnis Anda.",
+        icon: `<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>`
+    },
+    {
+        title: "SEO Optimization",
+        desc: "Optimasi mesin pencari agar website Anda mudah ditemukan oleh calon pelanggan.",
+        icon: `<path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path>`
+    },
+    {
+        title: "Maintenance & Support",
+        desc: "Dukungan teknis dan pemeliharaan website untuk menjaga performa optimal.",
+        icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>`
+    }
+];
+---
+
+<section class="services" id="layanan">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-subtitle">Layanan Kami</p>
+            <h2 class="section-title">Solusi Digital untuk Bisnis Anda</h2>
+        </div>
+        <div class="services-grid">
+            {services.map((service) => (
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" set:html={service.icon} />
+                    </div>
+                    <h3>{service.title}</h3>
+                    <p>{service.desc}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .services {
+        padding: 100px 0;
+        background: var(--bg-alt);
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 24px;
+    }
+
+    .service-card {
+        background: var(--bg);
+        padding: 36px 32px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        transition: var(--transition);
+    }
+
+    .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: transparent;
+    }
+
+    .service-icon {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f0edff, #e8e4ff);
+        border-radius: 12px;
+        color: var(--accent);
+        margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--primary);
+    }
+
+    .service-card p {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

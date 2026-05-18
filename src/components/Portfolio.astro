@@ -1,0 +1,101 @@
+---
+const projects = [
+    { name: "Toko Fashion Online", category: "E-Commerce", label: "E-Commerce Fashion", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
+    { name: "PT. Maju Bersama", category: "Company Profile", label: "Company Profile", gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
+    { name: "Resto Nusantara", category: "Landing Page", label: "Restaurant Web", gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" },
+    { name: "Sistem Manajemen", category: "Web Application", label: "Dashboard App", gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)" },
+    { name: "EduTech Indonesia", category: "Learning Platform", label: "Education Platform", gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)" },
+    { name: "Klinik Sehat", category: "Booking System", label: "Healthcare App", gradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)" },
+];
+---
+
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-subtitle">Portfolio</p>
+            <h2 class="section-title">Project Terbaru Kami</h2>
+        </div>
+        <div class="portfolio-grid">
+            {projects.map((project) => (
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder" style={`background: ${project.gradient}`}>
+                            <span>{project.label}</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>{project.name}</h3>
+                        <p>{project.category}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .portfolio {
+        padding: 100px 0;
+    }
+
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 24px;
+    }
+
+    .portfolio-item {
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition: var(--transition);
+    }
+
+    .portfolio-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .portfolio-image {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+    }
+
+    .portfolio-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: white;
+        transition: var(--transition);
+    }
+
+    .portfolio-item:hover .portfolio-placeholder {
+        transform: scale(1.05);
+    }
+
+    .portfolio-info {
+        padding: 20px 24px;
+    }
+
+    .portfolio-info h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 4px;
+    }
+
+    .portfolio-info p {
+        font-size: 0.85rem;
+        color: var(--text-light);
+    }
+
+    @media (max-width: 768px) {
+        .portfolio-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

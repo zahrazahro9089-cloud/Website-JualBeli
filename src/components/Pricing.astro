@@ -1,0 +1,169 @@
+---
+const plans = [
+    {
+        name: "Starter",
+        price: "2.5",
+        popular: false,
+        features: ["Desain 1-5 Halaman", "Responsive Design", "Domain + Hosting 1 Tahun", "SSL Certificate", "Revisi 2x", "Support 1 Bulan"]
+    },
+    {
+        name: "Professional",
+        price: "5",
+        popular: true,
+        features: ["Desain 5-10 Halaman", "Responsive Design", "Domain + Hosting 1 Tahun", "SSL Certificate", "SEO Basic", "Revisi 5x", "Support 3 Bulan", "Admin Panel"]
+    },
+    {
+        name: "Enterprise",
+        price: "10+",
+        popular: false,
+        features: ["Unlimited Halaman", "Responsive Design", "Domain + Hosting 1 Tahun", "SSL Certificate", "SEO Advanced", "Revisi Unlimited", "Support 6 Bulan", "Admin Panel + Custom Feature", "E-Commerce Integration"]
+    }
+];
+---
+
+<section class="pricing" id="harga">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-subtitle">Paket Harga</p>
+            <h2 class="section-title">Pilih Paket yang Sesuai</h2>
+        </div>
+        <div class="pricing-grid">
+            {plans.map((plan) => (
+                <div class={`pricing-card fade-in ${plan.popular ? 'pricing-popular' : ''}`}>
+                    {plan.popular && <div class="pricing-badge">Populer</div>}
+                    <div class="pricing-header">
+                        <h3>{plan.name}</h3>
+                        <div class="pricing-price">
+                            <span class="currency">Rp</span>
+                            <span class="amount">{plan.price}</span>
+                            <span class="period">Juta</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        {plan.features.map((feature) => (
+                            <li>{feature}</li>
+                        ))}
+                    </ul>
+                    <a href="#kontak" class={`btn btn-block ${plan.popular ? 'btn-primary' : 'btn-outline-dark'}`}>Pilih Paket</a>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .pricing {
+        padding: 100px 0;
+        background: var(--bg-alt);
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        align-items: start;
+    }
+
+    .pricing-card {
+        background: var(--bg);
+        padding: 40px 32px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .pricing-popular {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .pricing-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 4px 16px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .pricing-header {
+        text-align: center;
+        margin-bottom: 32px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-header h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 16px;
+    }
+
+    .pricing-price {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .pricing-price .currency {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-light);
+    }
+
+    .pricing-price .amount {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .pricing-price .period {
+        font-size: 1rem;
+        color: var(--text-light);
+    }
+
+    .pricing-features {
+        margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+        padding: 10px 0;
+        font-size: 0.9rem;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .pricing-features li::before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(135deg, #f0edff, #e8e4ff);
+        border-radius: 50%;
+        flex-shrink: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    @media (max-width: 768px) {
+        .pricing-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
