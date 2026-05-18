@@ -7,7 +7,9 @@ import Portfolio from '../components/Portfolio.astro';
 import Pricing from '../components/Pricing.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import Chatbot from '../components/Chatbot';
 import '../styles/hero-parallax.css';
+import '../styles/chatbot.css';
 ---
 
 <Layout title="BARAVORAGE | Jasa Perancangan Website Profesional">
@@ -18,6 +20,7 @@ import '../styles/hero-parallax.css';
     <Pricing />
     <Contact />
     <Footer />
+    <Chatbot client:idle apiKey={import.meta.env.PUBLIC_GROQ_API_KEY} />
 </Layout>
 
 <script>
