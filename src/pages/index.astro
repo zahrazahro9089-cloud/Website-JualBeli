@@ -11,6 +11,7 @@ import Chatbot from '../components/Chatbot';
 import '../styles/hero-parallax.css';
 import '../styles/chatbot.css';
 import '../styles/portfolio-preview.css';
+import '../styles/section-transitions.css';
 ---
 
 <Layout title="BARAVORAGE | Jasa Perancangan Website Profesional">
@@ -25,8 +26,9 @@ import '../styles/portfolio-preview.css';
 </Layout>
 
 <script>
-    // Scroll reveal animation for fade-in elements
+    // Scroll reveal animation for fade-in elements AND section headers
     function revealOnScroll() {
+        // Reveal cards
         const elements = document.querySelectorAll('.fade-in');
         elements.forEach((el, index) => {
             const elementTop = el.getBoundingClientRect().top;
@@ -35,6 +37,16 @@ import '../styles/portfolio-preview.css';
                 setTimeout(() => {
                     el.classList.add('visible');
                 }, (index % 6) * 80);
+            }
+        });
+
+        // Reveal section headers with parallax
+        const headers = document.querySelectorAll('.section-header');
+        headers.forEach((header) => {
+            const headerTop = header.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            if (headerTop < windowHeight - 60) {
+                header.classList.add('visible');
             }
         });
     }

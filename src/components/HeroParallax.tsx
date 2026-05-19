@@ -134,6 +134,17 @@ export default function HeroParallax() {
             {/* Stars */}
             <div className="parallax-layer stars-layer" data-speed="0.08" id="stars-container"></div>
 
+            {/* Aurora Borealis */}
+            <div className="parallax-layer aurora-layer" data-speed="0.06">
+                <div className="aurora">
+                    <div className="aurora-band aurora-band-1"></div>
+                    <div className="aurora-band aurora-band-2"></div>
+                    <div className="aurora-band aurora-band-3"></div>
+                    <div className="aurora-band aurora-band-4"></div>
+                </div>
+                <div className="aurora-shimmer"></div>
+            </div>
+
             {/* Moon */}
             <div className="parallax-layer moon-layer" data-speed="0.12">
                 <div className="moon"></div>

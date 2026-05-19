@@ -30,6 +30,144 @@
     );
 }
 
+/* === AURORA BOREALIS === */
+.aurora-layer {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.aurora {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+.aurora-band {
+    position: absolute;
+    width: 120%;
+    left: -10%;
+    height: 100%;
+    filter: blur(30px);
+    animation: auroraWave 12s ease-in-out infinite;
+}
+
+.aurora-band-1 {
+    top: 10%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(72, 219, 155, 0.3) 15%,
+        rgba(72, 219, 155, 0.5) 25%,
+        rgba(56, 178, 172, 0.4) 35%,
+        transparent 50%,
+        rgba(99, 179, 237, 0.4) 65%,
+        rgba(129, 140, 248, 0.5) 75%,
+        rgba(167, 139, 250, 0.3) 85%,
+        transparent 100%
+    );
+    height: 80px;
+    animation-delay: 0s;
+}
+
+.aurora-band-2 {
+    top: 18%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(52, 211, 153, 0.2) 20%,
+        rgba(45, 212, 191, 0.4) 35%,
+        rgba(56, 189, 248, 0.3) 50%,
+        transparent 65%,
+        rgba(139, 92, 246, 0.3) 80%,
+        transparent 100%
+    );
+    height: 60px;
+    animation-delay: -3s;
+    animation-duration: 15s;
+}
+
+.aurora-band-3 {
+    top: 8%;
+    background: linear-gradient(
+        90deg,
+        transparent 10%,
+        rgba(16, 185, 129, 0.2) 25%,
+        rgba(6, 182, 212, 0.35) 40%,
+        rgba(99, 102, 241, 0.3) 55%,
+        transparent 70%,
+        rgba(192, 132, 252, 0.2) 85%,
+        transparent 100%
+    );
+    height: 100px;
+    animation-delay: -6s;
+    animation-duration: 18s;
+}
+
+.aurora-band-4 {
+    top: 25%;
+    background: linear-gradient(
+        90deg,
+        transparent 5%,
+        rgba(34, 197, 94, 0.15) 20%,
+        rgba(20, 184, 166, 0.25) 40%,
+        transparent 55%,
+        rgba(168, 85, 247, 0.2) 70%,
+        rgba(236, 72, 153, 0.15) 85%,
+        transparent 100%
+    );
+    height: 50px;
+    animation-delay: -9s;
+    animation-duration: 20s;
+}
+
+@keyframes auroraWave {
+    0% {
+        transform: translateX(-5%) skewX(-2deg) scaleY(1);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateX(3%) skewX(1deg) scaleY(1.3);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateX(5%) skewX(2deg) scaleY(0.8);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translateX(-2%) skewX(-1deg) scaleY(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(-5%) skewX(-2deg) scaleY(1);
+        opacity: 0.6;
+    }
+}
+
+/* Aurora shimmer overlay */
+.aurora-shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(52, 211, 153, 0.02) 20%,
+        rgba(56, 189, 248, 0.03) 40%,
+        transparent 60%
+    );
+    animation: shimmerPulse 8s ease-in-out infinite;
+}
+
+@keyframes shimmerPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
 /* === STARS === */
 .stars-layer {
     pointer-events: none;
