@@ -79,7 +79,7 @@ section {
     right: -80px;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(108, 92, 231, 0.06), transparent 70%);
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.06), transparent 70%);
     border-radius: 50%;
     animation: sectionFloat 10s ease-in-out infinite;
     pointer-events: none;
@@ -92,7 +92,7 @@ section {
     left: -60px;
     width: 160px;
     height: 160px;
-    background: radial-gradient(circle, rgba(162, 155, 254, 0.05), transparent 70%);
+    background: radial-gradient(circle, rgba(251, 146, 60, 0.05), transparent 70%);
     border-radius: 50%;
     animation: sectionFloat 12s ease-in-out infinite reverse;
     pointer-events: none;
@@ -105,7 +105,7 @@ section {
     left: -100px;
     width: 250px;
     height: 250px;
-    background: radial-gradient(circle, rgba(108, 92, 231, 0.04), transparent 70%);
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.04), transparent 70%);
     border-radius: 50%;
     animation: sectionFloat 14s ease-in-out infinite;
     pointer-events: none;
@@ -181,6 +181,6 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at 50% 0%, rgba(108, 92, 231, 0.05), transparent 50%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(249, 115, 22, 0.05), transparent 50%);
     pointer-events: none;
 }

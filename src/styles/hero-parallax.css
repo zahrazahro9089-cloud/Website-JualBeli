@@ -59,13 +59,13 @@
     background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(72, 219, 155, 0.3) 15%,
-        rgba(72, 219, 155, 0.5) 25%,
-        rgba(56, 178, 172, 0.4) 35%,
+        rgba(249, 115, 22, 0.3) 15%,
+        rgba(251, 146, 60, 0.5) 25%,
+        rgba(253, 186, 116, 0.4) 35%,
         transparent 50%,
-        rgba(99, 179, 237, 0.4) 65%,
-        rgba(129, 140, 248, 0.5) 75%,
-        rgba(167, 139, 250, 0.3) 85%,
+        rgba(251, 191, 36, 0.4) 65%,
+        rgba(245, 158, 11, 0.5) 75%,
+        rgba(249, 115, 22, 0.3) 85%,
         transparent 100%
     );
     height: 80px;
@@ -77,11 +77,11 @@
     background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(52, 211, 153, 0.2) 20%,
-        rgba(45, 212, 191, 0.4) 35%,
-        rgba(56, 189, 248, 0.3) 50%,
+        rgba(251, 146, 60, 0.2) 20%,
+        rgba(253, 186, 116, 0.4) 35%,
+        rgba(251, 191, 36, 0.3) 50%,
         transparent 65%,
-        rgba(139, 92, 246, 0.3) 80%,
+        rgba(249, 115, 22, 0.3) 80%,
         transparent 100%
     );
     height: 60px;
@@ -94,11 +94,11 @@
     background: linear-gradient(
         90deg,
         transparent 10%,
-        rgba(16, 185, 129, 0.2) 25%,
-        rgba(6, 182, 212, 0.35) 40%,
-        rgba(99, 102, 241, 0.3) 55%,
+        rgba(249, 115, 22, 0.2) 25%,
+        rgba(245, 158, 11, 0.35) 40%,
+        rgba(251, 191, 36, 0.3) 55%,
         transparent 70%,
-        rgba(192, 132, 252, 0.2) 85%,
+        rgba(253, 186, 116, 0.2) 85%,
         transparent 100%
     );
     height: 100px;
@@ -111,11 +111,11 @@
     background: linear-gradient(
         90deg,
         transparent 5%,
-        rgba(34, 197, 94, 0.15) 20%,
-        rgba(20, 184, 166, 0.25) 40%,
+        rgba(251, 146, 60, 0.15) 20%,
+        rgba(249, 115, 22, 0.25) 40%,
         transparent 55%,
-        rgba(168, 85, 247, 0.2) 70%,
-        rgba(236, 72, 153, 0.15) 85%,
+        rgba(245, 158, 11, 0.2) 70%,
+        rgba(251, 191, 36, 0.15) 85%,
         transparent 100%
     );
     height: 50px;
@@ -156,8 +156,8 @@
     background: linear-gradient(
         180deg,
         transparent 0%,
-        rgba(52, 211, 153, 0.02) 20%,
-        rgba(56, 189, 248, 0.03) 40%,
+        rgba(249, 115, 22, 0.02) 20%,
+        rgba(251, 191, 36, 0.03) 40%,
         transparent 60%
     );
     animation: shimmerPulse 8s ease-in-out infinite;
@@ -368,8 +368,8 @@
     align-items: center;
     gap: 8px;
     padding: 8px 18px;
-    background: rgba(108, 92, 231, 0.1);
-    border: 1px solid rgba(108, 92, 231, 0.3);
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.3);
     border-radius: 40px;
     font-size: 0.78rem;
     font-weight: 500;
@@ -418,7 +418,7 @@
 }
 
 .title-highlight {
-    background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 50%, #ffe066 100%);
+    background: linear-gradient(135deg, #fb923c 0%, #fbbf24 50%, #fff 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

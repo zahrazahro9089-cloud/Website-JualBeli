@@ -8,10 +8,10 @@
 }
 
 :root {
-    --primary: #0a0a1a;
-    --accent: #6c5ce7;
-    --accent-light: #a29bfe;
-    --accent-glow: rgba(108, 92, 231, 0.3);
+    --primary: #0a0a0a;
+    --accent: #f97316;
+    --accent-light: #fb923c;
+    --accent-glow: rgba(249, 115, 22, 0.3);
     --text: #1f2937;
     --text-light: #6b7280;
     --bg: #ffffff;
