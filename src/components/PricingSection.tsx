@@ -198,7 +198,7 @@ export default function PricingSection() {
 
                 {/* Booking Button */}
                 <a
-                  href={`https://wa.me/6281234567890?text=Halo, saya tertarik dengan paket ${plan.name}`}
+                  href={`https://wa.me/6281556702393?text=Halo, saya tertarik dengan paket ${plan.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="pricing-card-btn"
