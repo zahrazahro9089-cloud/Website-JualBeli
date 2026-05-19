@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions';
+
 interface Props {
     title: string;
 }
@@ -14,6 +16,7 @@ const { title } = Astro.props;
         <meta name="description" content="BARAVORAGE - Jasa Perancangan Website Profesional. Desain modern, performa tinggi, dan pengalaman pengguna terbaik." />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <ClientRouter />
         <title>{title}</title>
     </head>
     <body>
@@ -23,4 +26,41 @@ const { title } = Astro.props;
 
 <style is:global>
     @import '../styles/global.css';
+
+    /* === PAGE TRANSITIONS === */
+    @keyframes fadeSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeSlideOut {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    }
+
+    ::view-transition-old(root) {
+        animation: fadeSlideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    ::view-transition-new(root) {
+        animation: fadeSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Navbar persists between pages */
+    ::view-transition-old(navbar),
+    ::view-transition-new(navbar) {
+        animation: none;
+    }
 </style>
