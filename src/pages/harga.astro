@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import Pricing from '../components/Pricing.astro';
+import PricingSection from '../components/PricingSection';
+import '../styles/pricing-section.css';
 import Footer from '../components/Footer.astro';
 import Chatbot from '../components/Chatbot';
 import '../styles/chatbot.css';
@@ -17,7 +18,7 @@ import '../styles/section-transitions.css';
             <p class="page-hero-desc">Pilih paket yang sesuai dengan kebutuhan dan budget bisnis Anda. Semua paket termasuk support.</p>
         </div>
     </div>
-    <Pricing />
+    <PricingSection client:visible />
     <Footer />
     <Chatbot client:idle apiKey={import.meta.env.PUBLIC_GROQ_API_KEY} />
 </Layout>

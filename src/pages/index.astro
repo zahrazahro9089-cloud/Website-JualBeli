@@ -4,7 +4,8 @@ import Navbar from '../components/Navbar.astro';
 import HeroParallax from '../components/HeroParallax';
 import Services from '../components/Services.astro';
 import PortfolioPreview from '../components/PortfolioPreview';
-import Pricing from '../components/Pricing.astro';
+import PricingSection from '../components/PricingSection';
+import '../styles/pricing-section.css';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import Chatbot from '../components/Chatbot';
@@ -19,7 +20,7 @@ import '../styles/section-transitions.css';
     <HeroParallax client:load />
     <Services />
     <PortfolioPreview client:visible />
-    <Pricing />
+    <PricingSection client:visible />
     <Contact />
     <Footer />
     <Chatbot client:idle apiKey={import.meta.env.PUBLIC_GROQ_API_KEY} />
