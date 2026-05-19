@@ -21,7 +21,7 @@ export default function BearAvatar({ size = 36, isThinking = false }: BearAvatar
         return () => clearInterval(blinkInterval);
     }, []);
 
-    // Mouse tracking - bear looks at cursor
+    // Mouse tracking - panda looks at cursor
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (!bearRef.current) return;
@@ -46,7 +46,6 @@ export default function BearAvatar({ size = 36, isThinking = false }: BearAvatar
             setExpression('surprised');
         } else {
             setExpression('normal');
-            // Randomly show happy face
             const happyInterval = setInterval(() => {
                 setExpression('happy');
                 setTimeout(() => setExpression('normal'), 1500);
@@ -55,13 +54,13 @@ export default function BearAvatar({ size = 36, isThinking = false }: BearAvatar
         }
     }, [isThinking]);
 
-    const eyeHeight = blink ? 0.5 : 4;
-    const eyeRy = blink ? 0.3 : 2.5;
+    const eyeHeight = blink ? 0.5 : 5;
+    const eyeRy = blink ? 0.3 : 3;
     const mouthPath = expression === 'happy'
-        ? 'M 44 58 Q 50 64 56 58'
+        ? 'M 44 62 Q 50 68 56 62'
         : expression === 'surprised'
-        ? 'M 47 58 Q 50 56 53 58 Q 50 62 47 58'
-        : 'M 46 58 Q 50 61 54 58';
+        ? 'M 47 62 Q 50 60 53 62 Q 50 66 47 62'
+        : 'M 46 62 Q 50 65 54 62';
 
     return (
         <svg
@@ -72,68 +71,69 @@ export default function BearAvatar({ size = 36, isThinking = false }: BearAvatar
             className="bear-avatar"
             style={{ display: 'block' }}
         >
-            {/* Ears */}
-            <circle cx="28" cy="22" r="14" fill="#8B6914" />
-            <circle cx="28" cy="22" r="8" fill="#D4A853" />
-            <circle cx="72" cy="22" r="14" fill="#8B6914" />
-            <circle cx="72" cy="22" r="8" fill="#D4A853" />
+            {/* Ears - black */}
+            <circle cx="26" cy="20" r="15" fill="#1a1a1a" />
+            <circle cx="26" cy="20" r="9" fill="#333" />
+            <circle cx="74" cy="20" r="15" fill="#1a1a1a" />
+            <circle cx="74" cy="20" r="9" fill="#333" />
 
-            {/* Head */}
-            <ellipse cx="50" cy="52" rx="35" ry="38" fill="#C4892B" />
+            {/* Head - white */}
+            <ellipse cx="50" cy="52" rx="36" ry="38" fill="#ffffff" />
+            <ellipse cx="50" cy="52" rx="36" ry="38" fill="none" stroke="#e0e0e0" strokeWidth="0.5" />
 
-            {/* Face inner */}
-            <ellipse cx="50" cy="56" rx="22" ry="20" fill="#E8C97A" />
+            {/* Eye patches - black */}
+            <ellipse cx="36" cy="44" rx="12" ry="10" fill="#1a1a1a" transform="rotate(-5 36 44)" />
+            <ellipse cx="64" cy="44" rx="12" ry="10" fill="#1a1a1a" transform="rotate(5 64 44)" />
 
-            {/* Eyes */}
+            {/* Eyes - white pupils inside black patches */}
             <g style={{ transform: `translate(${look.x}px, ${look.y}px)`, transition: 'transform 0.15s ease-out' }}>
                 {/* Left eye */}
-                <ellipse cx="38" cy="45" rx="3" ry={eyeRy} fill="#1a1a1a" style={{ transition: 'ry 0.1s' }}>
-                    {isThinking && <animateTransform attributeName="transform" type="rotate" values="0 38 45;5 38 45;-5 38 45;0 38 45" dur="2s" repeatCount="indefinite" />}
+                <ellipse cx="36" cy="44" rx="4" ry={eyeRy} fill="#ffffff" style={{ transition: 'ry 0.1s' }}>
+                    {isThinking && <animateTransform attributeName="transform" type="rotate" values="0 36 44;5 36 44;-5 36 44;0 36 44" dur="2s" repeatCount="indefinite" />}
                 </ellipse>
-                {/* Eye shine */}
-                {!blink && <circle cx="36.5" cy="43.5" r="1" fill="#fff" opacity="0.8" />}
+                {!blink && <circle cx="35" cy="43" r="1.5" fill="#fff" opacity="0.6" />}
 
                 {/* Right eye */}
-                <ellipse cx="62" cy="45" rx="3" ry={eyeRy} fill="#1a1a1a" style={{ transition: 'ry 0.1s' }}>
-                    {isThinking && <animateTransform attributeName="transform" type="rotate" values="0 62 45;-5 62 45;5 62 45;0 62 45" dur="2s" repeatCount="indefinite" />}
+                <ellipse cx="64" cy="44" rx="4" ry={eyeRy} fill="#ffffff" style={{ transition: 'ry 0.1s' }}>
+                    {isThinking && <animateTransform attributeName="transform" type="rotate" values="0 64 44;-5 64 44;5 64 44;0 64 44" dur="2s" repeatCount="indefinite" />}
                 </ellipse>
-                {/* Eye shine */}
-                {!blink && <circle cx="60.5" cy="43.5" r="1" fill="#fff" opacity="0.8" />}
+                {!blink && <circle cx="63" cy="43" r="1.5" fill="#fff" opacity="0.6" />}
             </g>
 
-            {/* Eyebrows */}
+            {/* Eyebrows when surprised */}
             {expression === 'surprised' && (
                 <>
-                    <line x1="34" y1="36" x2="42" y2="37" stroke="#6B4C11" strokeWidth="1.5" strokeLinecap="round" />
-                    <line x1="58" y1="37" x2="66" y2="36" stroke="#6B4C11" strokeWidth="1.5" strokeLinecap="round" />
+                    <line x1="30" y1="32" x2="42" y2="33" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="58" y1="33" x2="70" y2="32" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" />
                 </>
             )}
 
-            {/* Nose */}
-            <ellipse cx="50" cy="53" rx="5" ry="3.5" fill="#4A3000" />
-            <ellipse cx="49" cy="52" rx="1.5" ry="1" fill="#7A5500" opacity="0.5" />
+            {/* Nose - black oval */}
+            <ellipse cx="50" cy="55" rx="6" ry="4" fill="#1a1a1a" />
+            {/* Nose shine */}
+            <ellipse cx="48" cy="54" rx="2" ry="1.2" fill="#444" opacity="0.5" />
 
             {/* Mouth */}
-            <path d={mouthPath} fill="none" stroke="#4A3000" strokeWidth="1.5" strokeLinecap="round" style={{ transition: 'd 0.3s' }} />
+            <path d={mouthPath} fill="none" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round" style={{ transition: 'd 0.3s' }} />
 
-            {/* Blush */}
+            {/* Blush when happy */}
             {expression === 'happy' && (
                 <>
-                    <circle cx="30" cy="54" r="5" fill="#FF9999" opacity="0.3" />
-                    <circle cx="70" cy="54" r="5" fill="#FF9999" opacity="0.3" />
+                    <circle cx="28" cy="56" r="5" fill="#ffb3b3" opacity="0.4" />
+                    <circle cx="72" cy="56" r="5" fill="#ffb3b3" opacity="0.4" />
                 </>
             )}
 
-            {/* Thinking animation */}
+            {/* Thinking bubbles */}
             {isThinking && (
                 <g>
-                    <circle cx="72" cy="28" r="2" fill="#aaa" opacity="0.6">
+                    <circle cx="76" cy="26" r="2.5" fill="#ccc" opacity="0.6">
                         <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.5s" repeatCount="indefinite" />
-                        <animate attributeName="cy" values="28;24;28" dur="1.5s" repeatCount="indefinite" />
+                        <animate attributeName="cy" values="26;22;26" dur="1.5s" repeatCount="indefinite" />
                     </circle>
-                    <circle cx="78" cy="22" r="1.5" fill="#aaa" opacity="0.4">
+                    <circle cx="82" cy="18" r="1.8" fill="#ccc" opacity="0.4">
                         <animate attributeName="opacity" values="0.2;0.6;0.2" dur="1.5s" repeatCount="indefinite" begin="0.3s" />
-                        <animate attributeName="cy" values="22;18;22" dur="1.5s" repeatCount="indefinite" begin="0.3s" />
+                        <animate attributeName="cy" values="18;14;18" dur="1.5s" repeatCount="indefinite" begin="0.3s" />
                     </circle>
                 </g>
             )}
