@@ -29,7 +29,6 @@ import '../styles/section-transitions.css';
 <script>
     // Scroll reveal animation for fade-in elements AND section headers
     function revealOnScroll() {
-        // Reveal cards
         const elements = document.querySelectorAll('.fade-in');
         elements.forEach((el, index) => {
             const elementTop = el.getBoundingClientRect().top;
@@ -41,7 +40,6 @@ import '../styles/section-transitions.css';
             }
         });
 
-        // Reveal section headers with parallax
         const headers = document.querySelectorAll('.section-header');
         headers.forEach((header) => {
             const headerTop = header.getBoundingClientRect().top;
@@ -52,7 +50,58 @@ import '../styles/section-transitions.css';
         });
     }
 
-    window.addEventListener('scroll', revealOnScroll);
+    // Parallax scroll effect on sections below hero
+    function parallaxSections() {
+        const scrollY = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+
+        // Parallax on service cards - slight upward movement
+        document.querySelectorAll('.service-card').forEach((card, i) => {
+            const rect = (card as HTMLElement).getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                const translateY = (1 - progress) * 30 * ((i % 3 === 1) ? 0.5 : 1);
+                (card as HTMLElement).style.transform = `translateY(${translateY}px)`;
+            }
+        });
+
+        // Parallax on portfolio cards
+        document.querySelectorAll('.portfolio-card').forEach((card, i) => {
+            const rect = (card as HTMLElement).getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                const translateY = (1 - progress) * 25 * ((i % 2 === 0) ? 1 : 0.6);
+                (card as HTMLElement).style.transform = `translateY(${translateY}px)`;
+            }
+        });
+
+        // Parallax on section icons/decorations
+        document.querySelectorAll('.service-icon').forEach((icon, i) => {
+            const rect = (icon as HTMLElement).getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                const translateY = (1 - progress) * -10;
+                (icon as HTMLElement).style.transform = `translateY(${translateY}px) scale(${0.95 + progress * 0.05})`;
+            }
+        });
+
+        // Parallax on section titles - subtle floating
+        document.querySelectorAll('.section-title').forEach((title) => {
+            const rect = (title as HTMLElement).getBoundingClientRect();
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                const translateY = (1 - progress) * 15;
+                (title as HTMLElement).style.transform = `translateY(${translateY}px)`;
+            }
+        });
+    }
+
+    function onScroll() {
+        revealOnScroll();
+        requestAnimationFrame(parallaxSections);
+    }
+
+    window.addEventListener('scroll', onScroll);
     window.addEventListener('DOMContentLoaded', revealOnScroll);
     revealOnScroll();
 </script>
