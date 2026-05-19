@@ -22,13 +22,83 @@
     display: block;
 }
 
-/* Spectrum Button */
-.audio-spectrum-btn {
+/* Controls */
+.audio-spectrum-controls {
     position: absolute;
     top: 50%;
     right: 16px;
     transform: translateY(-50%);
     pointer-events: all;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Track name */
+.audio-spectrum-track-name {
+    font-size: 0.65rem;
+    color: var(--accent-light);
+    background: rgba(10, 10, 26, 0.7);
+    backdrop-filter: blur(8px);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(162, 155, 254, 0.2);
+    white-space: nowrap;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(8px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Track list dropdown */
+.audio-spectrum-tracklist {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 8px;
+    background: rgba(10, 10, 26, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(162, 155, 254, 0.3);
+    border-radius: 10px;
+    padding: 6px;
+    min-width: 140px;
+    animation: slideUp 0.2s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.audio-spectrum-track-item {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    font-family: inherit;
+    text-align: left;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.audio-spectrum-track-item:hover {
+    background: rgba(108, 92, 231, 0.2);
+    color: #fff;
+}
+
+.audio-spectrum-track-item.active {
+    background: rgba(108, 92, 231, 0.3);
+    color: var(--accent-light);
+}
+
+/* Buttons */
+.audio-spectrum-btn {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -48,31 +118,20 @@
     opacity: 1;
     border-color: var(--accent-light);
     background: rgba(108, 92, 231, 0.2);
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
     box-shadow: 0 0 12px rgba(108, 92, 231, 0.4);
 }
 
-.audio-spectrum-btn.active {
+.audio-spectrum-btn.play-btn.active {
     opacity: 1;
     border-color: var(--accent-light);
     background: rgba(108, 92, 231, 0.3);
     box-shadow: 0 0 16px rgba(108, 92, 231, 0.5);
 }
 
-.audio-spectrum-btn.connecting {
-    opacity: 1;
-    border-color: #fbbf24;
-    color: #fbbf24;
-}
-
-/* Spin animation for loading */
-.audio-spectrum-btn .spin {
-    animation: spectrumSpin 1s linear infinite;
-}
-
-@keyframes spectrumSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.audio-spectrum-btn.track-btn {
+    width: 28px;
+    height: 28px;
 }
 
 /* Navbar scrolled adjustment */
@@ -91,9 +150,21 @@
         height: 36px;
     }
 
+    .audio-spectrum-controls {
+        right: 12px;
+    }
+
     .audio-spectrum-btn {
         width: 28px;
         height: 28px;
-        right: 12px;
+    }
+
+    .audio-spectrum-btn.track-btn {
+        width: 24px;
+        height: 24px;
+    }
+
+    .audio-spectrum-track-name {
+        display: none;
     }
 }
