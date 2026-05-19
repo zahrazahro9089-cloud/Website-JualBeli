@@ -1,0 +1,132 @@
+/* ===== PORTFOLIO PREVIEW ===== */
+.portfolio {
+    padding: 100px 0;
+}
+
+.portfolio-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 28px;
+}
+
+.portfolio-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #fff;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+}
+
+/* Browser Frame */
+.portfolio-preview-frame {
+    border-bottom: 1px solid var(--border);
+}
+
+.preview-browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.browser-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.browser-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.browser-dots span:nth-child(1) { background: #ff5f57; }
+.browser-dots span:nth-child(2) { background: #ffbd2e; }
+.browser-dots span:nth-child(3) { background: #28c840; }
+
+.browser-url {
+    flex: 1;
+    font-size: 0.65rem;
+    color: #999;
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+/* Scrollable Preview */
+.preview-scroll-container {
+    height: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.preview-scroll-container::-webkit-scrollbar {
+    width: 3px;
+}
+
+.preview-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.preview-scroll-container::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+}
+
+.preview-scroll-container:hover::-webkit-scrollbar-thumb {
+    background: #bbb;
+}
+
+.mockup-page {
+    min-height: 400px;
+}
+
+/* Card Info */
+.portfolio-card-info {
+    padding: 18px 22px;
+}
+
+.portfolio-card-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 3px;
+}
+
+.portfolio-card-info p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+}
+
+/* Hover effect - auto scroll hint */
+.portfolio-card:hover .preview-scroll-container {
+    animation: autoScroll 3s ease-in-out;
+}
+
+@keyframes autoScroll {
+    0% { scroll-top: 0; }
+    50% { scroll-top: 100; }
+    100% { scroll-top: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .portfolio-grid-new {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-scroll-container {
+        height: 200px;
+    }
+}
