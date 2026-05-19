@@ -3,31 +3,30 @@ import { useEffect, useRef, useState } from 'react';
 export default function HeroParallax() {
     const heroRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
-    const cardRef = useRef<HTMLDivElement>(null);
     const [counters, setCounters] = useState({ projects: 0, clients: 0, years: 0 });
     const [hasAnimated, setHasAnimated] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);
 
     useEffect(() => {
-        // === PARTICLES ===
-        const particlesContainer = document.getElementById('particles-container');
-        if (particlesContainer && particlesContainer.children.length === 0) {
-            const count = window.innerWidth > 768 ? 40 : 18;
+        // === STARS ===
+        const starsContainer = document.getElementById('stars-container');
+        if (starsContainer && starsContainer.children.length === 0) {
+            const count = window.innerWidth > 768 ? 60 : 30;
             for (let i = 0; i < count; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                particle.style.animationDuration = `${3 + Math.random() * 4}s`;
-                const size = 2 + Math.random() * 4;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particlesContainer.appendChild(particle);
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 60}%`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDuration = `${2 + Math.random() * 3}s`;
+                const size = 1 + Math.random() * 2;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                starsContainer.appendChild(star);
             }
         }
 
-        // === SCROLL PARALLAX (Apple-style + Nature Parallax) ===
+        // === SCROLL PARALLAX ===
         let ticking = false;
         const handleScroll = () => {
             if (!ticking) {
@@ -41,29 +40,21 @@ export default function HeroParallax() {
                     const progress = Math.min(scrollY / heroHeight, 1);
                     setScrollProgress(progress);
 
-                    // Multi-layer nature parallax
+                    // Multi-layer parallax
                     const layers = hero.querySelectorAll<HTMLElement>('.parallax-layer[data-speed]');
                     layers.forEach(layer => {
                         const speed = parseFloat(layer.dataset.speed || '0');
                         layer.style.transform = `translate3d(0, ${-(scrollY * speed)}px, 0)`;
                     });
 
-                    // Apple-style content fade + scale
+                    // Apple-style content fade
                     if (contentRef.current) {
                         const opacity = 1 - (progress * 1.5);
-                        const scale = 1 - (progress * 0.1);
-                        const translateY = scrollY * 0.4;
-                        contentRef.current.style.transform = `translate3d(0, ${translateY}px, 0) scale(${Math.max(0.9, scale)})`;
+                        const scale = 1 - (progress * 0.08);
+                        const translateY = scrollY * 0.35;
+                        contentRef.current.style.transform = `translate3d(0, ${translateY}px, 0) scale(${Math.max(0.92, scale)})`;
                         contentRef.current.style.opacity = `${Math.max(0, opacity)}`;
                     }
-
-                    // Text reveal lines
-                    const titleLines = hero.querySelectorAll<HTMLElement>('.title-line');
-                    titleLines.forEach((line, i) => {
-                        const lineProgress = Math.max(0, Math.min(1, (scrollY - i * 30) / 100));
-                        line.style.transform = `translate3d(0, ${lineProgress * -8}px, 0)`;
-                        line.style.opacity = `${1 - lineProgress * 0.5}`;
-                    });
 
                     ticking = false;
                 });
@@ -71,56 +62,32 @@ export default function HeroParallax() {
             }
         };
 
-        // === 3D TILT EFFECT ===
+        // === MOUSE PARALLAX ===
         const handleMouseMove = (e: MouseEvent) => {
             const hero = heroRef.current;
-            const card = cardRef.current;
             if (!hero) return;
-
             const rect = hero.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-            // Tilt floating shapes
-            const shapes = hero.querySelectorAll<HTMLElement>('.shape');
-            shapes.forEach((shape, index) => {
-                const depth = (index + 1) * 12;
-                const rotateX = y * 5;
-                const rotateY = -x * 5;
-                shape.style.transform = `translate(${x * depth}px, ${y * depth}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-
-            // 3D tilt on hero card/content
-            if (card) {
-                const tiltX = y * -8;
-                const tiltY = x * 8;
-                card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-            }
-        };
-
-        const handleMouseLeave = () => {
-            if (cardRef.current) {
-                cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-            }
-            const shapes = heroRef.current?.querySelectorAll<HTMLElement>('.shape');
-            shapes?.forEach(shape => {
-                shape.style.transform = 'translate(0, 0) rotateX(0deg) rotateY(0deg)';
+            // Move mountains slightly
+            const mountains = hero.querySelectorAll<HTMLElement>('.mountain-layer');
+            mountains.forEach((m, i) => {
+                const depth = (i + 1) * 5;
+                m.style.transform = `translate(${x * depth}px, ${y * depth * 0.5}px)`;
             });
         };
 
         window.addEventListener('scroll', handleScroll);
         heroRef.current?.addEventListener('mousemove', handleMouseMove);
-        heroRef.current?.addEventListener('mouseleave', handleMouseLeave);
 
-        // Initial text reveal animation
+        // Text reveal
         setTimeout(() => {
             const lines = document.querySelectorAll<HTMLElement>('.title-line');
             lines.forEach((line, i) => {
-                setTimeout(() => {
-                    line.classList.add('revealed');
-                }, i * 200);
+                setTimeout(() => line.classList.add('revealed'), i * 200);
             });
-        }, 300);
+        }, 500);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -134,81 +101,90 @@ export default function HeroParallax() {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !hasAnimated) {
                         setHasAnimated(true);
-                        animateCounters();
+                        const targets = { projects: 50, clients: 40, years: 3 };
+                        const duration = 2000;
+                        const start = performance.now();
+                        const animate = (now: number) => {
+                            const elapsed = now - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            setCounters({
+                                projects: Math.floor(targets.projects * eased),
+                                clients: Math.floor(targets.clients * eased),
+                                years: Math.floor(targets.years * eased),
+                            });
+                            if (progress < 1) requestAnimationFrame(animate);
+                        };
+                        requestAnimationFrame(animate);
                     }
                 });
             },
             { threshold: 0.5 }
         );
-
         const statsEl = document.getElementById('hero-stats');
         if (statsEl) observer.observe(statsEl);
         return () => observer.disconnect();
     }, [hasAnimated]);
 
-    const animateCounters = () => {
-        const targets = { projects: 50, clients: 40, years: 3 };
-        const duration = 2000;
-        const start = performance.now();
-
-        const animate = (now: number) => {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCounters({
-                projects: Math.floor(targets.projects * eased),
-                clients: Math.floor(targets.clients * eased),
-                years: Math.floor(targets.years * eased),
-            });
-            if (progress < 1) requestAnimationFrame(animate);
-        };
-        requestAnimationFrame(animate);
-    };
-
     return (
         <section className="hero-parallax" id="beranda" ref={heroRef}>
-            {/* === NATURE PARALLAX LAYERS === */}
-            <div className="parallax-layer parallax-mountain-back" data-speed="0.1"></div>
-            <div className="parallax-layer parallax-mountain-mid" data-speed="0.25"></div>
-            <div className="parallax-layer parallax-overlay" data-speed="0.05"></div>
-            <div className="parallax-layer parallax-grid-pattern" data-speed="0.15"></div>
+            {/* Sky gradient */}
+            <div className="parallax-layer sky-layer" data-speed="0.05"></div>
 
-            {/* Floating 3D Shapes */}
-            <div className="parallax-layer parallax-shapes" data-speed="0.4">
-                <div className="shape shape-1"></div>
-                <div className="shape shape-2"></div>
-                <div className="shape shape-3"></div>
-                <div className="shape shape-4"></div>
-                <div className="shape shape-5"></div>
-                <div className="shape shape-6"></div>
-                <div className="shape shape-ring"></div>
+            {/* Stars */}
+            <div className="parallax-layer stars-layer" data-speed="0.08" id="stars-container"></div>
+
+            {/* Moon */}
+            <div className="parallax-layer moon-layer" data-speed="0.12">
+                <div className="moon"></div>
             </div>
 
-            {/* Particles */}
-            <div className="parallax-layer parallax-particles" data-speed="0.5" id="particles-container"></div>
+            {/* Mountains back */}
+            <div className="parallax-layer mountains-back" data-speed="0.15">
+                <div className="mountain-layer mountain-far"></div>
+            </div>
 
-            {/* === HERO CONTENT with Apple-style fade === */}
+            {/* Mountains mid */}
+            <div className="parallax-layer mountains-mid" data-speed="0.25">
+                <div className="mountain-layer mountain-mid"></div>
+            </div>
+
+            {/* Lighthouse + beam */}
+            <div className="parallax-layer lighthouse-layer" data-speed="0.3">
+                <div className="lighthouse">
+                    <div className="lighthouse-tower"></div>
+                    <div className="lighthouse-top"></div>
+                    <div className="lighthouse-light"></div>
+                    <div className="lighthouse-beam"></div>
+                    <div className="lighthouse-beam beam-2"></div>
+                </div>
+            </div>
+
+            {/* Mountains front */}
+            <div className="parallax-layer mountains-front" data-speed="0.4">
+                <div className="mountain-layer mountain-front"></div>
+            </div>
+
+            {/* Fog/mist */}
+            <div className="parallax-layer fog-layer" data-speed="0.1"></div>
+
+            {/* Content */}
             <div className="hero-content-wrapper" ref={contentRef}>
                 <div className="container">
-                    <div className="hero-content">
-                        {/* Badge */}
+                    <div className="hero-content hero-content-center">
                         <div className="hero-badge">
                             <span className="badge-dot"></span>
                             Jasa Perancangan Website Premium
                         </div>
-
-                        {/* Text Reveal Title */}
                         <h1 className="hero-title">
                             <span className="title-line title-reveal">Kami Merancang</span>
                             <span className="title-line title-reveal title-highlight">Website Masa Depan</span>
                             <span className="title-line title-reveal">untuk Bisnis Anda</span>
                         </h1>
-
                         <p className="hero-description">
                             BARAVORAGE menghadirkan solusi digital yang memadukan estetika modern
                             dengan performa tinggi. Setiap pixel dirancang untuk memberikan pengalaman terbaik.
                         </p>
-
                         <div className="hero-buttons">
                             <a href="#portfolio" className="btn btn-primary">
                                 <span>Lihat Portfolio</span>
@@ -218,20 +194,6 @@ export default function HeroParallax() {
                                 </svg>
                             </a>
                             <a href="#kontak" className="btn btn-outline">Hubungi Kami</a>
-                        </div>
-                    </div>
-
-                    {/* 3D Tilt Card */}
-                    <div className="hero-tilt-card" ref={cardRef}>
-                        <div className="tilt-card-inner">
-                            <div className="tilt-card-glow"></div>
-                            <div className="tilt-card-content">
-                                <div className="tilt-code-line"><span className="code-tag">&lt;div</span> <span className="code-attr">class</span>=<span className="code-val">"website"</span><span className="code-tag">&gt;</span></div>
-                                <div className="tilt-code-line indent"><span className="code-tag">&lt;h1&gt;</span><span className="code-text">Your Brand</span><span className="code-tag">&lt;/h1&gt;</span></div>
-                                <div className="tilt-code-line indent"><span className="code-tag">&lt;p&gt;</span><span className="code-text">Amazing Website</span><span className="code-tag">&lt;/p&gt;</span></div>
-                                <div className="tilt-code-line"><span className="code-tag">&lt;/div&gt;</span></div>
-                                <div className="tilt-card-cursor"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -264,15 +226,13 @@ export default function HeroParallax() {
                 </div>
             </div>
 
-            {/* Scroll Indicator */}
+            {/* Scroll indicator */}
             <div className="scroll-indicator">
-                <div className="scroll-mouse">
-                    <div className="scroll-wheel"></div>
-                </div>
+                <div className="scroll-mouse"><div className="scroll-wheel"></div></div>
                 <span>Scroll Down</span>
             </div>
 
-            {/* Apple-style scroll progress bar */}
+            {/* Progress bar */}
             <div className="scroll-progress-bar" style={{ transform: `scaleX(${scrollProgress})` }}></div>
         </section>
     );

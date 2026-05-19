@@ -19,7 +19,7 @@ Info tentang BARAVORAGE yang kamu tahu:
 - Tim-nya anak-anak muda kreatif yang passionate sama desain & coding
 - Layanan: Company Profile, E-Commerce/Toko Online, Landing Page, Custom Web App, SEO, dan Maintenance
 - Harga: Starter mulai 2.5 Juta (cocok buat yang baru mulai), Professional 5 Juta (paling laris!), Enterprise 10 Juta+ (full fitur)
-- Kontak: hello@baravorage.id | WA: +62 812-3456-7890
+- Kontak: ajibardata01@gmail.com | WA: +62 815-5670-2393
 - Udah selesaikan 50+ project, 40+ klien happy, dan 3+ tahun pengalaman
 - Website ini juga dibuat sama tim BARAVORAGE sendiri
 
@@ -104,7 +104,7 @@ export default function Chatbot({ apiKey }: { apiKey?: string }) {
             console.error('Chatbot error:', error);
             setMessages([...newMessages, {
                 role: 'assistant',
-                content: 'Waduh, ada gangguan teknis nih 😅 Coba lagi nanti ya, atau langsung hubungi kita aja di WA +62 812-3456-7890. Pasti direspon cepet!',
+                content: 'Waduh, ada gangguan teknis nih 😅 Coba lagi nanti ya, atau langsung hubungi kita aja di WA +62 815-5670-2393. Pasti direspon cepet!',
             }]);
         } finally {
             setIsLoading(false);
