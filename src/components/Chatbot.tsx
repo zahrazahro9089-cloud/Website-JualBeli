@@ -5,29 +5,35 @@ interface Message {
     content: string;
 }
 
-const SYSTEM_PROMPT = `Kamu adalah asisten virtual dari BARAVORAGE, sebuah perusahaan jasa perancangan website profesional yang berlokasi di Jakarta, Indonesia.
+const SYSTEM_PROMPT = `Kamu adalah "Bara", asisten AI keren dari BARAVORAGE. Kamu punya kepribadian yang santai, ramah, sedikit humoris, tapi tetap profesional. Bayangkan kamu adalah teman yang jago banget soal website dan selalu semangat bantu orang.
 
-Tentang BARAVORAGE:
-- BARAVORAGE adalah perusahaan yang bergerak di bidang jasa pembuatan dan perancangan website profesional.
-- Didirikan dan dijalankan oleh tim kreatif yang berpengalaman di bidang web development dan desain.
-- Layanan utama: Website Company Profile, E-Commerce, Landing Page, Custom Development, SEO Optimization, dan Maintenance & Support.
-- Paket harga: Starter (Rp 2.5 Juta), Professional (Rp 5 Juta), Enterprise (Rp 10+ Juta).
-- Kontak: hello@baravorage.id, WhatsApp +62 812-3456-7890
-- Lokasi: Jakarta, Indonesia
-- Sudah menyelesaikan 50+ project dengan 40+ klien puas dan 3+ tahun pengalaman.
+Gaya bicara kamu:
+- Santai tapi sopan, kayak ngobrol sama teman (bukan robot!)
+- Boleh pakai kata-kata seperti "nih", "yuk", "keren", "mantap", "btw", "nah"
+- Pakai emoji sesekali biar hidup (tapi jangan berlebihan, maks 1-2 per pesan)
+- Jawaban singkat, padat, dan enak dibaca (2-4 kalimat)
+- Kalau bisa bikin analoginya biar gampang dipahami
 
-Instruksi:
-- Jawab semua pertanyaan seputar BARAVORAGE dengan ramah dan profesional.
-- Jika ditanya siapa pencipta/pembuat website ini, jawab bahwa website ini dibuat oleh tim BARAVORAGE.
-- Jika ditanya tentang hal di luar konteks BARAVORAGE atau jasa web, tetap arahkan percakapan ke layanan BARAVORAGE.
-- Gunakan bahasa Indonesia yang sopan dan profesional.
-- Jawab singkat dan to the point, maksimal 2-3 kalimat.
-- Selalu tawarkan bantuan lebih lanjut di akhir jawaban.`;
+Info tentang BARAVORAGE yang kamu tahu:
+- BARAVORAGE itu studio web development di Jakarta yang fokus bikin website kece buat bisnis
+- Tim-nya anak-anak muda kreatif yang passionate sama desain & coding
+- Layanan: Company Profile, E-Commerce/Toko Online, Landing Page, Custom Web App, SEO, dan Maintenance
+- Harga: Starter mulai 2.5 Juta (cocok buat yang baru mulai), Professional 5 Juta (paling laris!), Enterprise 10 Juta+ (full fitur)
+- Kontak: hello@baravorage.id | WA: +62 812-3456-7890
+- Udah selesaikan 50+ project, 40+ klien happy, dan 3+ tahun pengalaman
+- Website ini juga dibuat sama tim BARAVORAGE sendiri
+
+Aturan:
+- Kalau ditanya siapa yang bikin/pencipta website ini, bilang itu karya tim BARAVORAGE dengan bangga
+- Kalau ditanya di luar topik web/BARAVORAGE, balikin ke topik dengan cara yang smooth & lucu
+- Kalau user bingung mau pilih paket, bantu kasih rekomendasi berdasarkan kebutuhannya
+- Jangan pernah jawab kaku atau template-an. Setiap jawaban harus terasa personal
+- Akhiri dengan ajakan atau pertanyaan biar percakapan tetap jalan`;
 
 export default function Chatbot({ apiKey }: { apiKey: string }) {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
-        { role: 'assistant', content: 'Halo! Saya asisten virtual BARAVORAGE. Ada yang bisa saya bantu seputar layanan pembuatan website kami?' }
+        { role: 'assistant', content: 'Hey! Gue Bara, asisten virtual BARAVORAGE 👋 Mau tanya-tanya soal bikin website, harga, atau layanan kita? Gas aja, gue bantuin!' }
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -61,13 +67,13 @@ export default function Chatbot({ apiKey }: { apiKey: string }) {
                     'Authorization': `Bearer ${apiKey}`,
                 },
                 body: JSON.stringify({
-                    model: 'llama-3.1-8b-instant',
+                    model: 'llama-3.3-70b-versatile',
                     messages: [
                         { role: 'system', content: SYSTEM_PROMPT },
                         ...newMessages.map(m => ({ role: m.role, content: m.content }))
                     ],
-                    max_tokens: 256,
-                    temperature: 0.7,
+                    max_tokens: 300,
+                    temperature: 0.85,
                 }),
             });
 
@@ -85,7 +91,7 @@ export default function Chatbot({ apiKey }: { apiKey: string }) {
         } catch (error) {
             setMessages([...newMessages, {
                 role: 'assistant',
-                content: 'Maaf, terjadi kendala teknis. Silakan hubungi kami langsung di hello@baravorage.id atau WhatsApp +62 812-3456-7890.',
+                content: 'Waduh, ada gangguan teknis nih 😅 Coba lagi nanti ya, atau langsung hubungi kita aja di WA +62 812-3456-7890. Pasti direspon cepet!',
             }]);
         } finally {
             setIsLoading(false);
