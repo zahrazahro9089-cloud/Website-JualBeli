@@ -1,0 +1,99 @@
+/* ===== AUDIO SPECTRUM VISUALIZER ===== */
+.audio-spectrum-container {
+    position: fixed;
+    top: 60px; /* Below navbar */
+    left: 0;
+    right: 0;
+    height: 40px;
+    z-index: 999;
+    pointer-events: none;
+    transition: opacity 0.3s ease, height 0.3s ease;
+    opacity: 0.3;
+}
+
+.audio-spectrum-container.active {
+    opacity: 1;
+    height: 50px;
+}
+
+.audio-spectrum-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Spectrum Button */
+.audio-spectrum-btn {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    pointer-events: all;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(162, 155, 254, 0.4);
+    background: rgba(10, 10, 26, 0.7);
+    backdrop-filter: blur(8px);
+    color: var(--accent-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.audio-spectrum-btn:hover {
+    opacity: 1;
+    border-color: var(--accent-light);
+    background: rgba(108, 92, 231, 0.2);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 12px rgba(108, 92, 231, 0.4);
+}
+
+.audio-spectrum-btn.active {
+    opacity: 1;
+    border-color: var(--accent-light);
+    background: rgba(108, 92, 231, 0.3);
+    box-shadow: 0 0 16px rgba(108, 92, 231, 0.5);
+}
+
+.audio-spectrum-btn.connecting {
+    opacity: 1;
+    border-color: #fbbf24;
+    color: #fbbf24;
+}
+
+/* Spin animation for loading */
+.audio-spectrum-btn .spin {
+    animation: spectrumSpin 1s linear infinite;
+}
+
+@keyframes spectrumSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Navbar scrolled adjustment */
+.navbar.scrolled ~ .audio-spectrum-container {
+    top: 52px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .audio-spectrum-container {
+        top: 56px;
+        height: 30px;
+    }
+
+    .audio-spectrum-container.active {
+        height: 36px;
+    }
+
+    .audio-spectrum-btn {
+        width: 28px;
+        height: 28px;
+        right: 12px;
+    }
+}
