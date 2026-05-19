@@ -185,26 +185,25 @@ export default function HeroParallax() {
                     <div className="hero-content hero-content-center">
                         <div className="hero-badge">
                             <span className="badge-dot"></span>
-                            Jasa Perancangan Website Premium
+                            BARAVORAGE — Website Designer
                         </div>
                         <h1 className="hero-title">
-                            <span className="title-line title-reveal">Kami Merancang</span>
-                            <span className="title-line title-reveal title-highlight">Website Masa Depan</span>
-                            <span className="title-line title-reveal">untuk Bisnis Anda</span>
+                            <span className="title-line title-reveal">Wujudkan Website</span>
+                            <span className="title-line title-reveal title-highlight">Impian Bisnis Anda</span>
+                            <span className="title-line title-reveal">Mulai Hari Ini</span>
                         </h1>
                         <p className="hero-description">
-                            BARAVORAGE menghadirkan solusi digital yang memadukan estetika modern
-                            dengan performa tinggi. Setiap pixel dirancang untuk memberikan pengalaman terbaik.
+                            Buat kehadiran digital yang powerful. BARAVORAGE merancang website profesional yang mengubah pengunjung menjadi pelanggan — cepat, modern, dan hasil nyata.
                         </p>
                         <div className="hero-buttons">
-                            <a href="#portfolio" className="btn btn-primary">
-                                <span>Lihat Portfolio</span>
+                            <a href="/harga" className="btn btn-primary">
+                                <span>Lihat Paket & Harga</span>
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
                             </a>
-                            <a href="#kontak" className="btn btn-outline">Hubungi Kami</a>
+                            <a href="https://wa.me/6281556702393?text=Halo BARAVORAGE, saya ingin konsultasi pembuatan website" target="_blank" rel="noopener noreferrer" className="btn btn-outline">Konsultasi Gratis</a>
                         </div>
                     </div>
                 </div>
