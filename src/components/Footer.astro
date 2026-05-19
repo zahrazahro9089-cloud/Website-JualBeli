@@ -1,0 +1,108 @@
+---
+---
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">BARA<span>VORAGE</span></a>
+                <p>Membuat website profesional yang membantu bisnis Anda berkembang di era digital.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#layanan">Layanan</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#harga">Harga</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Layanan</h4>
+                <ul>
+                    <li><a href="#">Company Profile</a></li>
+                    <li><a href="#">E-Commerce</a></li>
+                    <li><a href="#">Landing Page</a></li>
+                    <li><a href="#">Custom Dev</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BARAVORAGE. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background: var(--primary);
+        color: #e5e7eb;
+        padding: 64px 0 24px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 48px;
+    }
+
+    .footer-brand .logo {
+        color: #fff;
+        margin-bottom: 16px;
+        display: inline-block;
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .footer-brand .logo span {
+        color: var(--accent-light);
+    }
+
+    .footer-brand p {
+        font-size: 0.9rem;
+        color: #9ca3af;
+        max-width: 320px;
+        line-height: 1.7;
+    }
+
+    .footer-links h4 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+        color: var(--accent-light);
+    }
+
+    .footer-bottom {
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        font-size: 0.8rem;
+        color: #6b7280;
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+    }
+</style>
