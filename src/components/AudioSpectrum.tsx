@@ -2,9 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 // Daftar musik yang bisa diputar
 const MUSIC_TRACKS = [
-    { name: 'Lo-Fi Chill', url: '/music/lofi-chill.mp3' },
-    { name: 'Ambient', url: '/music/ambient.mp3' },
-    { name: 'Electronic', url: '/music/electronic.mp3' },
+    { name: 'Girei - Pain\'s Theme', url: '/music/girei-pains-theme.mp3' },
 ];
 
 export default function AudioSpectrum() {
