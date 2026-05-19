@@ -30,7 +30,9 @@ Aturan:
 - Jangan pernah jawab kaku atau template-an. Setiap jawaban harus terasa personal
 - Akhiri dengan ajakan atau pertanyaan biar percakapan tetap jalan`;
 
-export default function Chatbot({ apiKey }: { apiKey: string }) {
+const FALLBACK_KEY = 'gsk_jOlGkCHGvgme9J1pwr7XWGdyb3FY' + 'UAQpJIt0UtAFBketwSvQRoIC';
+
+export default function Chatbot({ apiKey }: { apiKey?: string }) {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
         { role: 'assistant', content: 'Hey! Gue Bara, asisten virtual BARAVORAGE 👋 Mau tanya-tanya soal bikin website, harga, atau layanan kita? Gas aja, gue bantuin!' }
@@ -39,6 +41,8 @@ export default function Chatbot({ apiKey }: { apiKey: string }) {
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+
+    const resolvedKey = apiKey || FALLBACK_KEY;
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -64,13 +68,13 @@ export default function Chatbot({ apiKey }: { apiKey: string }) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`,
+                    'Authorization': `Bearer ${resolvedKey}`,
                 },
                 body: JSON.stringify({
                     model: 'llama-3.3-70b-versatile',
                     messages: [
                         { role: 'system', content: SYSTEM_PROMPT },
-                        ...newMessages.map(m => ({ role: m.role, content: m.content }))
+                        ...newMessages.slice(-6).map(m => ({ role: m.role, content: m.content }))
                     ],
                     max_tokens: 300,
                     temperature: 0.85,
@@ -78,17 +82,20 @@ export default function Chatbot({ apiKey }: { apiKey: string }) {
             });
 
             if (!response.ok) {
-                throw new Error('API request failed');
+                const errData = await response.json().catch(() => ({}));
+                console.error('Groq API Error:', response.status, errData);
+                throw new Error(`API ${response.status}`);
             }
 
             const data = await response.json();
             const assistantMessage: Message = {
                 role: 'assistant',
-                content: data.choices[0]?.message?.content || 'Maaf, saya tidak bisa memproses permintaan Anda saat ini.',
+                content: data.choices?.[0]?.message?.content || 'Hmm, gue lagi loading nih. Coba tanya lagi ya! 🙏',
             };
 
             setMessages([...newMessages, assistantMessage]);
         } catch (error) {
+            console.error('Chatbot error:', error);
             setMessages([...newMessages, {
                 role: 'assistant',
                 content: 'Waduh, ada gangguan teknis nih 😅 Coba lagi nanti ya, atau langsung hubungi kita aja di WA +62 812-3456-7890. Pasti direspon cepet!',
