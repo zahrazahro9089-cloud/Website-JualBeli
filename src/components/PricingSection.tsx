@@ -132,7 +132,6 @@ function CheckIcon() {
 }
 
 export default function PricingSection() {
-  const [isYearly, setIsYearly] = useState(false);
   const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -160,24 +159,8 @@ export default function PricingSection() {
           <p className="pricing-subtitle">Paket Harga</p>
           <h2 className="pricing-title">Pilih Paket yang Sesuai</h2>
           <p className="pricing-desc">
-            Investasi terbaik untuk pertumbuhan bisnis digital Anda
+            Investasi terbaik untuk pertumbuhan bisnis digital Anda. Harga berlaku per tahun.
           </p>
-        </div>
-
-        {/* Toggle Switch */}
-        <div className="pricing-toggle">
-          <span className={`toggle-label ${!isYearly ? 'active' : ''}`}>Bulanan</span>
-          <button
-            className={`toggle-switch ${isYearly ? 'yearly' : ''}`}
-            onClick={() => setIsYearly(!isYearly)}
-            aria-label="Toggle billing period"
-          >
-            <span className="toggle-knob" />
-          </button>
-          <span className={`toggle-label ${isYearly ? 'active' : ''}`}>
-            Tahunan
-            <span className="toggle-discount">Hemat 17%</span>
-          </span>
         </div>
 
         {/* Cards Slider */}
@@ -202,10 +185,10 @@ export default function PricingSection() {
 
                 {/* Price */}
                 <div className="pricing-card-price">
-                  <span className={`price-amount ${isYearly ? 'yearly-active' : ''}`}>
-                    {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
+                  <span className="price-amount">
+                    {plan.yearlyPrice}
                   </span>
-                  <span className="price-period">/{isYearly ? 'tahun' : 'bulan'}</span>
+                  <span className="price-period">/tahun</span>
                 </div>
 
                 {/* Description */}
