@@ -3,9 +3,11 @@ import CompanyMockup from './mockups/CompanyMockup';
 import RestaurantMockup from './mockups/RestaurantMockup';
 import EducationMockup from './mockups/EducationMockup';
 import HealthcareMockup from './mockups/HealthcareMockup';
+import DistroMockup from './mockups/DistroMockup';
 
 const projects = [
   { name: "Toko Fashion Online", category: "E-Commerce", mockup: "ecommerce", url: "shopmart.id" },
+  { name: "URBVN Distro", category: "Distro & Streetwear", mockup: "distro", url: "urbvn.id" },
   { name: "PT. Maju Bersama", category: "Toko Bangunan & Ternak", mockup: "company", url: "majubersama.co.id" },
   { name: "Resto Nusantara", category: "Restoran Padang", mockup: "restaurant", url: "restonusantara.id" },
   { name: "EduTech Indonesia", category: "Learning Platform", mockup: "education", url: "edutech.id" },
@@ -15,6 +17,7 @@ const projects = [
 function MockupContent({ type }: { type: string }) {
   switch (type) {
     case "ecommerce": return <EcommerceMockup />;
+    case "distro": return <DistroMockup />;
     case "company": return <CompanyMockup />;
     case "restaurant": return <RestaurantMockup />;
     case "education": return <EducationMockup />;
