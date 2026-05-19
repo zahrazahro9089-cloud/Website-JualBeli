@@ -18,6 +18,34 @@ import '../styles/section-transitions.css';
             <p class="page-hero-desc">Lihat koleksi project yang telah kami selesaikan untuk berbagai klien dari beragam industri.</p>
         </div>
     </div>
+
+    <!-- Stats & Intro Section -->
+    <section class="portfolio-stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Project</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">40+</span>
+                    <span class="stat-label">Klien</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6+</span>
+                    <span class="stat-label">Industri</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Kepuasan</span>
+                </div>
+            </div>
+            <p class="portfolio-intro-text">
+                Setiap project yang kami kerjakan dibuat dengan dedikasi penuh, perhatian terhadap detail, dan komitmen untuk menghasilkan solusi digital yang tidak hanya indah secara visual, tetapi juga fungsional dan berdampak bagi bisnis klien kami.
+            </p>
+        </div>
+    </section>
+
     <PortfolioPreview client:visible />
     <Footer />
     <Chatbot client:idle apiKey={import.meta.env.PUBLIC_GROQ_API_KEY} />
@@ -28,6 +56,47 @@ import '../styles/section-transitions.css';
     .page-hero-sub { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-light); margin-bottom: 12px; }
     .page-hero-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 16px; }
     .page-hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .portfolio-stats-section {
+        background: #0a0a0a;
+        padding: 80px 0;
+        color: #fff;
+        text-align: center;
+    }
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 32px;
+        margin-bottom: 48px;
+    }
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .stat-number {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: #f97316;
+    }
+    .stat-label {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 500;
+    }
+    .portfolio-intro-text {
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.8;
+        max-width: 700px;
+        margin: 0 auto;
+    }
 </style>
 
 <script>

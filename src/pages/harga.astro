@@ -18,6 +18,46 @@ import '../styles/section-transitions.css';
             <p class="page-hero-desc">Pilih paket yang sesuai dengan kebutuhan dan budget bisnis Anda. Semua paket termasuk support.</p>
         </div>
     </div>
+
+    <!-- Kenapa Harga Kami Terjangkau Section -->
+    <section class="pricing-info-section">
+        <div class="container">
+            <h2 class="section-title">Kenapa Harga Kami Terjangkau?</h2>
+            <div class="pricing-info-grid">
+                <div class="pricing-info-card">
+                    <div class="pricing-info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="9 12 12 15 16 10"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="pricing-info-card-title">Tanpa Biaya Tersembunyi</h3>
+                    <p class="pricing-info-card-desc">Harga yang kami tawarkan sudah final. Tidak ada biaya tambahan yang muncul di tengah proses pengerjaan project.</p>
+                </div>
+                <div class="pricing-info-card">
+                    <div class="pricing-info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3 class="pricing-info-card-title">Termasuk Domain & Hosting</h3>
+                    <p class="pricing-info-card-desc">Setiap paket sudah termasuk domain custom dan hosting selama 1 tahun pertama. Anda tinggal fokus pada bisnis.</p>
+                </div>
+                <div class="pricing-info-card">
+                    <div class="pricing-info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                        </svg>
+                    </div>
+                    <h3 class="pricing-info-card-title">Garansi Kepuasan</h3>
+                    <p class="pricing-info-card-desc">Kami memberikan revisi hingga Anda puas. Jika hasil tidak sesuai ekspektasi, kami siap memperbaikinya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <PricingSection client:visible />
     <Footer />
     <Chatbot client:idle apiKey={import.meta.env.PUBLIC_GROQ_API_KEY} />
@@ -28,6 +68,63 @@ import '../styles/section-transitions.css';
     .page-hero-sub { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-light); margin-bottom: 12px; }
     .page-hero-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 16px; }
     .page-hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .pricing-info-section {
+        background: #0a0a0a;
+        padding: 80px 0;
+        color: #fff;
+    }
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .section-title {
+        text-align: center;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-weight: 700;
+        margin-bottom: 48px;
+        color: #fff;
+    }
+    .pricing-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 28px;
+    }
+    .pricing-info-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 32px;
+        text-align: center;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .pricing-info-card:hover {
+        transform: translateY(-4px);
+        border-color: #f97316;
+    }
+    .pricing-info-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: rgba(249, 115, 22, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: #f97316;
+    }
+    .pricing-info-card-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+    .pricing-info-card-desc {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.6;
+    }
 </style>
 
 <script>

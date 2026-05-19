@@ -17,6 +17,79 @@ import '../styles/section-transitions.css';
             <p class="page-hero-desc">Solusi digital lengkap dari desain hingga deployment, untuk membantu bisnis Anda tumbuh di era digital.</p>
         </div>
     </div>
+
+    <!-- Mengapa Memilih Kami Section -->
+    <section class="why-us-section">
+        <div class="container">
+            <h2 class="section-title">Mengapa Memilih Kami?</h2>
+            <div class="why-us-grid">
+                <div class="why-us-card">
+                    <div class="why-us-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="why-us-card-title">Tim Berpengalaman</h3>
+                    <p class="why-us-card-desc">3+ tahun pengalaman di industri web development dengan portfolio project yang beragam dan berkualitas tinggi.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="why-us-card-title">Teknologi Terkini</h3>
+                    <p class="why-us-card-desc">Menggunakan stack modern seperti React, Next.js, Astro, dan teknologi terdepan lainnya untuk hasil optimal.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="why-us-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="why-us-card-title">Support Setelah Launch</h3>
+                    <p class="why-us-card-desc">Maintenance dan update berkala setelah website live, memastikan performa tetap optimal setiap saat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proses Kerja Kami Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">Proses Kerja Kami</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-number">01</div>
+                    <h3 class="process-step-title">Konsultasi</h3>
+                    <p class="process-step-desc">Diskusi kebutuhan dan goals bisnis Anda</p>
+                </div>
+                <div class="process-connector">→</div>
+                <div class="process-step">
+                    <div class="process-number">02</div>
+                    <h3 class="process-step-title">Desain</h3>
+                    <p class="process-step-desc">Wireframe dan mockup UI/UX yang menarik</p>
+                </div>
+                <div class="process-connector">→</div>
+                <div class="process-step">
+                    <div class="process-number">03</div>
+                    <h3 class="process-step-title">Development</h3>
+                    <p class="process-step-desc">Coding dengan teknologi modern dan best practice</p>
+                </div>
+                <div class="process-connector">→</div>
+                <div class="process-step">
+                    <div class="process-number">04</div>
+                    <h3 class="process-step-title">Launch</h3>
+                    <p class="process-step-desc">Deploy, testing, dan go live!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <Services />
     <Footer />
     <Chatbot client:idle apiKey={import.meta.env.PUBLIC_GROQ_API_KEY} />
@@ -27,6 +100,108 @@ import '../styles/section-transitions.css';
     .page-hero-sub { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-light); margin-bottom: 12px; }
     .page-hero-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 16px; }
     .page-hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .why-us-section {
+        background: #0a0a0a;
+        padding: 80px 0;
+        color: #fff;
+    }
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .section-title {
+        text-align: center;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-weight: 700;
+        margin-bottom: 48px;
+        color: #fff;
+    }
+    .why-us-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 32px;
+    }
+    .why-us-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 32px;
+        text-align: center;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .why-us-card:hover {
+        transform: translateY(-4px);
+        border-color: #f97316;
+    }
+    .why-us-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: rgba(249, 115, 22, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: #f97316;
+    }
+    .why-us-card-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+    .why-us-card-desc {
+        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.6;
+    }
+
+    .process-section {
+        background: #0a0a0a;
+        padding: 0 0 80px;
+        color: #fff;
+    }
+    .process-grid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    .process-step {
+        text-align: center;
+        padding: 24px;
+        flex: 1;
+        min-width: 160px;
+    }
+    .process-number {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #f97316;
+        margin-bottom: 12px;
+    }
+    .process-step-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #fff;
+    }
+    .process-step-desc {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.5;
+    }
+    .process-connector {
+        font-size: 1.5rem;
+        color: #f97316;
+        font-weight: 700;
+    }
+    @media (max-width: 768px) {
+        .process-connector { display: none; }
+        .process-grid { flex-direction: column; gap: 8px; }
+    }
 </style>
 
 <script>

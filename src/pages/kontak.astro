@@ -17,6 +17,44 @@ import '../styles/section-transitions.css';
             <p class="page-hero-desc">Punya ide project? Ceritakan kepada kami dan dapatkan konsultasi gratis untuk bisnis Anda.</p>
         </div>
     </div>
+
+    <!-- Siap Memulai Project Section -->
+    <section class="contact-intro-section">
+        <div class="container">
+            <h2 class="contact-intro-title">Siap Memulai Project?</h2>
+            <p class="contact-intro-desc">
+                Kami siap membantu mewujudkan ide digital Anda. Hubungi kami melalui form di bawah atau langsung via WhatsApp untuk konsultasi gratis.
+            </p>
+            <div class="contact-info-grid">
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <div class="contact-info-text">
+                        <span class="contact-info-label">Jam Kerja</span>
+                        <span class="contact-info-value">Senin - Jumat: 09:00 - 17:00</span>
+                        <span class="contact-info-value">Sabtu: 09:00 - 14:00</span>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <div class="contact-info-text">
+                        <span class="contact-info-label">Respon Cepat</span>
+                        <span class="contact-info-value">Respon cepat dalam 1x24 jam</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <Contact />
     <Footer />
     <Chatbot client:idle apiKey={import.meta.env.PUBLIC_GROQ_API_KEY} />
@@ -27,6 +65,68 @@ import '../styles/section-transitions.css';
     .page-hero-sub { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-light); margin-bottom: 12px; }
     .page-hero-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 16px; }
     .page-hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .contact-intro-section {
+        background: #0a0a0a;
+        padding: 80px 0;
+        color: #fff;
+        text-align: center;
+    }
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .contact-intro-title {
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: #fff;
+    }
+    .contact-intro-desc {
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+        max-width: 600px;
+        margin: 0 auto 48px;
+    }
+    .contact-info-grid {
+        display: flex;
+        justify-content: center;
+        gap: 48px;
+        flex-wrap: wrap;
+    }
+    .contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        text-align: left;
+    }
+    .contact-info-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(249, 115, 22, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f97316;
+        flex-shrink: 0;
+    }
+    .contact-info-text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .contact-info-label {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+    }
+    .contact-info-value {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
 </style>
 
 <script>
