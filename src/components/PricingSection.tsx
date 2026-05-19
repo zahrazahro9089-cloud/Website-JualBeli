@@ -14,11 +14,11 @@ interface PricingPlan {
 const plans: PricingPlan[] = [
   {
     name: 'Silver',
-    monthlyPrice: 'Rp 700.000',
-    yearlyPrice: 'Rp 7.000.000',
-    renewalPrice: 'Rp 500.000',
+    monthlyPrice: 'Rp 700rb',
+    yearlyPrice: 'Rp 700rb',
+    renewalPrice: 'Rp 500rb',
     color: '#9ca3af',
-    description: 'Cocok untuk UMKM dan bisnis kecil yang baru memulai kehadiran digital.',
+    description: 'Paket pembuatan website yang cocok bagi Anda yang baru memulai bisnis dan membutuhkan website sederhana yang mudah diakses.',
     features: [
       'Desain 1-3 Halaman',
       'Responsive Design',
@@ -31,11 +31,11 @@ const plans: PricingPlan[] = [
   },
   {
     name: 'Gold',
-    monthlyPrice: 'Rp 1.600.000',
-    yearlyPrice: 'Rp 16.000.000',
-    renewalPrice: 'Rp 1.200.000',
+    monthlyPrice: 'Rp 1,6jt',
+    yearlyPrice: 'Rp 1,6jt',
+    renewalPrice: 'Rp 600rb',
     color: '#eab308',
-    description: 'Ideal untuk bisnis berkembang yang butuh fitur lebih lengkap dan profesional.',
+    description: 'Paket pembuatan website ini cocok untuk Anda yang membutuhkan website dengan fitur tambahan seperti e-commerce, blog, dan lainnya.',
     features: [
       'Desain 5-7 Halaman',
       'Responsive Design',
@@ -50,11 +50,11 @@ const plans: PricingPlan[] = [
   },
   {
     name: 'Diamond',
-    monthlyPrice: 'Rp 2.000.000',
-    yearlyPrice: 'Rp 20.000.000',
-    renewalPrice: 'Rp 1.500.000',
+    monthlyPrice: 'Rp 2jt',
+    yearlyPrice: 'Rp 2jt',
+    renewalPrice: 'Rp 1jt',
     color: '#06b6d4',
-    description: 'Paket premium untuk bisnis yang ingin tampil maksimal dengan fitur canggih.',
+    description: 'Paket desain website ini sangat cocok bagi Anda yang membutuhkan website sebagai profil bisnis yang berguna untuk meningkatkan online presence.',
     features: [
       'Desain 8-12 Halaman',
       'Responsive Design',
@@ -71,11 +71,11 @@ const plans: PricingPlan[] = [
   },
   {
     name: 'Platinum',
-    monthlyPrice: 'Rp 3.000.000',
-    yearlyPrice: 'Rp 30.000.000',
-    renewalPrice: 'Rp 2.000.000',
+    monthlyPrice: 'Rp 3jt',
+    yearlyPrice: 'Rp 3jt',
+    renewalPrice: '50% dari harga',
     color: '#8b5cf6',
-    description: 'Solusi lengkap untuk enterprise dengan kebutuhan custom dan fitur tanpa batas.',
+    description: 'Paket desain website ini cocok untuk Anda yang membutuhkan website dengan fitur khusus yang lebih kompleks dan desain yang menarik dan unik.',
     features: [
       'Unlimited Halaman',
       'Responsive Design',
@@ -157,9 +157,9 @@ export default function PricingSection() {
         {/* Header */}
         <div className="pricing-header">
           <p className="pricing-subtitle">Paket Harga</p>
-          <h2 className="pricing-title">Pilih Paket yang Sesuai</h2>
+          <h2 className="pricing-title">Pembuatan Website</h2>
           <p className="pricing-desc">
-            Investasi terbaik untuk pertumbuhan bisnis digital Anda. Harga berlaku per tahun.
+            Lebih dari 50 website profesional yang telah berhasil tim BARAVORAGE bangun dan online optimal.
           </p>
         </div>
 
@@ -188,8 +188,10 @@ export default function PricingSection() {
                   <span className="price-amount">
                     {plan.yearlyPrice}
                   </span>
-                  <span className="price-period">/tahun</span>
                 </div>
+
+                {/* Period label */}
+                <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginBottom: '16px' }}>Paket Tahunan</p>
 
                 {/* Description */}
                 <p className="pricing-card-desc">{plan.description}</p>
