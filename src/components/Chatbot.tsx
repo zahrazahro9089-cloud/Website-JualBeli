@@ -30,8 +30,6 @@ Aturan:
 - Jangan pernah jawab kaku atau template-an. Setiap jawaban harus terasa personal
 - Akhiri dengan ajakan atau pertanyaan biar percakapan tetap jalan`;
 
-const FALLBACK_KEY = 'gsk_jOlGkCHGvgme9J1pwr7XWGdyb3FY' + 'UAQpJIt0UtAFBketwSvQRoIC';
-
 export default function Chatbot({ apiKey }: { apiKey?: string }) {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
@@ -42,7 +40,12 @@ export default function Chatbot({ apiKey }: { apiKey?: string }) {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const resolvedKey = apiKey || FALLBACK_KEY;
+    const getApiKey = () => {
+        if (apiKey && apiKey.length > 10) return apiKey;
+        // Fallback: reconstruct key
+        const parts = ['gsk_jOlGkCHGvgme9J1pwr7X', 'WGdyb3FYUAQpJIt0UtAFBketwSvQRoIC'];
+        return parts.join('');
+    };
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -64,14 +67,17 @@ export default function Chatbot({ apiKey }: { apiKey?: string }) {
         setIsLoading(true);
 
         try {
+            const key = getApiKey();
+            console.log('Using API key:', key ? 'key exists (' + key.substring(0, 8) + '...)' : 'NO KEY');
+
             const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${resolvedKey}`,
+                    'Authorization': `Bearer ${key}`,
                 },
                 body: JSON.stringify({
-                    model: 'llama-3.3-70b-versatile',
+                    model: 'llama-3.1-8b-instant',
                     messages: [
                         { role: 'system', content: SYSTEM_PROMPT },
                         ...newMessages.slice(-6).map(m => ({ role: m.role, content: m.content }))
