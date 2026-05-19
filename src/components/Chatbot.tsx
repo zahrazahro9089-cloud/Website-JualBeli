@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import BearAvatar from './BearAvatar';
 
 interface Message {
     role: 'user' | 'assistant';
@@ -144,7 +145,7 @@ export default function Chatbot({ apiKey }: { apiKey?: string }) {
                 <div className="chatbot-header">
                     <div className="chatbot-header-info">
                         <div className="chatbot-avatar">
-                            <span>B</span>
+                            <BearAvatar size={36} isThinking={isLoading} />
                         </div>
                         <div>
                             <h4>BARAVORAGE AI</h4>
@@ -164,7 +165,7 @@ export default function Chatbot({ apiKey }: { apiKey?: string }) {
                     {messages.map((msg, index) => (
                         <div key={index} className={`chatbot-message ${msg.role}`}>
                             {msg.role === 'assistant' && (
-                                <div className="chatbot-msg-avatar">B</div>
+                                <div className="chatbot-msg-avatar"><BearAvatar size={28} /></div>
                             )}
                             <div className="chatbot-msg-bubble">
                                 {msg.content}
@@ -173,7 +174,7 @@ export default function Chatbot({ apiKey }: { apiKey?: string }) {
                     ))}
                     {isLoading && (
                         <div className="chatbot-message assistant">
-                            <div className="chatbot-msg-avatar">B</div>
+                            <div className="chatbot-msg-avatar"><BearAvatar size={28} isThinking={true} /></div>
                             <div className="chatbot-msg-bubble typing">
                                 <span className="dot"></span>
                                 <span className="dot"></span>
