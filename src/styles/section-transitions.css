@@ -39,35 +39,27 @@ section {
     transform: translateY(0) scale(1);
 }
 
-/* === SECTION DIVIDERS with parallax wave === */
+/* === SECTION DIVIDERS - visible line separators === */
 .services,
 .portfolio,
 .pricing,
 .contact {
     position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* Gradient glow line on top of each section */
 .services::before,
-.pricing::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(180deg, transparent, var(--bg));
-    pointer-events: none;
-}
-
 .portfolio::before,
+.pricing::before,
 .contact::before {
     content: '';
     position: absolute;
-    top: -60px;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(180deg, var(--bg-alt), var(--bg));
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3), transparent);
     pointer-events: none;
 }
 
@@ -172,6 +164,7 @@ section {
 .footer {
     position: relative;
     overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .footer::before {
